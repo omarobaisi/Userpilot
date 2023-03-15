@@ -4,7 +4,7 @@ import { UserContext } from '../../context/user.context'
 
 function UserSearch(props) {
 
-    const { users, setUsers } = useContext(UserContext);
+    const { setUsers } = useContext(UserContext);
     const { usersNum, setUsersNum } = useContext(UserContext);
 
     const formatDate = (dateString) => {

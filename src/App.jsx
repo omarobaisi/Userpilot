@@ -7,7 +7,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/users' element={<UserListing />} />
+        <Route path='/' element={<UserListing />} />
         <Route path='/user/:id' element={<UserDetail />} />
       </Routes>
     </BrowserRouter>

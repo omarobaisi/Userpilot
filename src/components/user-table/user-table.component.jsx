@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import axios from 'axios';
+import { styled } from '@mui/material/styles';
 import { UserContext } from '../../context/user.context'
 
 import Table from '@mui/material/Table';
@@ -10,6 +11,10 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import UserColumn from '../user-column/user-column.component';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
 
 const formatDate = (dateString) => {
   const date = new Date(dateString);
@@ -43,11 +48,48 @@ const fetchUsers = async (usersNum, usersPage) => {
   return filterUsers(users)
 }
 
+
+
+const Container = styled('form')(() => ({
+  border: '1px solid #9FA2B4',
+  borderRadius: '8px',
+  margin: '30px 20px',
+}));
+
+const Form = styled('form')(() => ({
+  textAlign: 'end'
+}));
+
+const TableTop = styled('form')(() => ({
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  padding: '32px'
+}));
+
+const TableButtom = styled('form')(() => ({
+  display: 'flex',
+  justifyContent: 'end',
+  alignItems: 'center',
+  padding: '15px'
+}));
+
+const Dropdown = styled('form')(() => ({
+  margin: '0 15px',
+}));
+
+const NextPage = styled('form')(() => ({
+  fontSize: '25px',
+  padding: '0 10px'
+}));
+
 function UserTable() {
 
   const { users, setUsers } = useContext(UserContext);
   const { usersNum, setUsersNum } = useContext(UserContext);
   const { usersPage, setUsersPage } = useContext(UserContext);
+  const { gender, setGender } = useContext(UserContext);
+  const { nationality, setNationality } = useContext(UserContext);
 
   const getUsers = async () => {
     const users = await fetchUsers(usersNum, usersPage);
@@ -57,7 +99,6 @@ function UserTable() {
   const setRowsNumber = (event) => {
     const usersNum = parseInt(event.target.value);
     setUsersNum(usersNum);
-    getUsers()
   }
 
   const setPrevPage = () => {
@@ -78,8 +119,6 @@ function UserTable() {
 
   const searchByGenderAndNatonality = (event) => {
     event.preventDefault();
-    const gender = event.target.gender.value;
-    const nationality = event.target.nationality.value;
     const genderInput= document.querySelector(".gender");
     const natInput= document.querySelector(".nat");
     genderInput.value = "";
@@ -89,16 +128,26 @@ function UserTable() {
     .then(userData => setUsers(filterUsers(userData)))
   }
 
+  const setUserGender = (event) => {
+    const usersGender = parseInt(event.target.value);
+    setGender(usersGender);
+  }
+
+  const setUserNat = (event) => {
+    const usersNationality = parseInt(event.target.value);
+    setNationality(usersNationality);
+  }
+
   return (
-    <div>
-      <div>All Users</div>
-      <div>
-        <form onSubmit={searchByGenderAndNatonality}>
-          <input type="text" placeholder='Gender' name='gender' className='gender' />
-          <input type="text" placeholder='Nationality' name='nationality' className='nat' />
-          <button>Search</button>
-        </form>
-      </div>
+    <Container>
+      <TableTop>
+        <div>All Users</div>
+        <Form>
+          <TextField onChange={setUserGender} InputProps={{ style: { height: '40px', width: '200px' } }} id="outlined-basic" label="Gender" variant="outlined" type="text" name='gender' className='gender' />
+          <TextField onChange={setUserNat} InputProps={{ style: { height: '40px', width: '200px' } }} id="outlined-basic" label="Nationality" variant="outlined" type="text" name='nationality' className='nat' />
+          <Button onClick={searchByGenderAndNatonality} variant="text">Search</Button>
+        </Form>
+      </TableTop>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
@@ -114,29 +163,37 @@ function UserTable() {
           </TableBody>
         </Table>
       </TableContainer>
-      <div>
+      <TableButtom>
         Rows per page:  
-        <select name="pages" id="pages" value={usersNum} onChange={setRowsNumber}>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-          <option value="9">9</option>
-          <option value="10">10</option>
-          <option value="11">11</option>
-          <option value="12">12</option>
-          <option value="13">13</option>
-          <option value="14">14</option>
-          <option value="15">15</option>
-          <option value="16">16</option>
-          <option value="17">17</option>
-          <option value="18">18</option>
-          <option value="19">19</option>
-          <option value="20">20</option>s
-        </select>
-        <span onClick={setPrevPage}>prev</span> <span onClick={setNextPage}>next</span>
-      </div>
-    </div>
+        <Dropdown>
+          <Select
+            value={usersNum}
+            label="Pages"
+            name="pages" 
+            onChange={setRowsNumber}
+          >
+            <MenuItem value="5">5</MenuItem>
+            <MenuItem value="6">6</MenuItem>
+            <MenuItem value="7">7</MenuItem>
+            <MenuItem value="8">8</MenuItem>
+            <MenuItem value="9">9</MenuItem>
+            <MenuItem value="10">10</MenuItem>
+            <MenuItem value="11">11</MenuItem>
+            <MenuItem value="12">12</MenuItem>
+            <MenuItem value="13">13</MenuItem>
+            <MenuItem value="14">14</MenuItem>
+            <MenuItem value="15">15</MenuItem>
+            <MenuItem value="16">16</MenuItem>
+            <MenuItem value="17">17</MenuItem>
+            <MenuItem value="18">18</MenuItem>
+            <MenuItem value="19">19</MenuItem>
+            <MenuItem value="20">20</MenuItem>
+          </Select>
+          <Button variant="text" onClick={getUsers}>Search</Button>
+        </Dropdown>
+        <NextPage onClick={setPrevPage}>&lt;</NextPage> <NextPage onClick={setNextPage}>&gt;</NextPage>
+      </TableButtom>
+    </Container>
   );
 }
 

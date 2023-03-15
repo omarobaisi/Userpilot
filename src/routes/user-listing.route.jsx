@@ -9,12 +9,13 @@ import { UserContext } from '../context/user.context';
 import UserTable from '../components/user-table/user-table.component';
 import UserSearch from '../components/user-search/user-search.component';
 import Sidebar from '../components/sidebar/sidebar.component';
+import TableTop from '../components/table-top/table-top.component';
 
 const SideGrid = styled('div')(({ theme }) => ({
     backgroundColor: theme.palette.background.secondary,
     color: theme.palette.text.gray,
-    height: '100vh',
-    padding: '25px'
+    height: '100%',
+    minHeight: '100vh',
 }));
 
 function UserListing() {
@@ -31,6 +32,9 @@ function UserListing() {
                     
                 </Grid>
                 <Grid item xs={10}>
+                    <div sx={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                        <TableTop />
+                    </div>
                 <div>{users ? <UserTable /> : <UserSearch /> }</div>
                 </Grid>
             </Grid>

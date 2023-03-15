@@ -24,7 +24,6 @@ function UserDetail() {
 
     return (
         <div>
-            User
             <UserListing />
             <UserInfo />
         </div>

@@ -1,5 +1,7 @@
 import React, { useEffect, useContext } from 'react';
-import axios from 'axios';
+
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
 
 import { UserContext } from '../context/user.context';
 
@@ -11,10 +13,16 @@ function UserListing() {
     const { users } = useContext(UserContext);
 
     return (
-        <div>
-            <div>Users</div>
-            {users ? <UserTable /> : <UserSearch /> }
-        </div>
+            <Box sx={{ flexGrow: 1 }}>
+                <Grid container>
+                    <Grid item xs={2}>
+                        <div>sidebar</div>
+                    </Grid>
+                    <Grid item xs={10}>
+                    <div>{users ? <UserTable /> : <UserSearch /> }</div>
+                    </Grid>
+                </Grid>
+            </Box>
     );
 }
 

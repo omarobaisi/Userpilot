@@ -50,8 +50,8 @@ function TableTop({ filterUsers }) {
         <Container>
             <div>All Users</div>
             <Form>
-                <TextField onChange={setUserGender} InputProps={{ style: { width: '200px' } }} id="outlined-basic" label="Gender" variant="outlined" type="text" name='gender' className='gender' />
-                <TextField onChange={setUserNat} InputProps={{ style: { width: '200px' } }} id="outlined-basic" label="Nationality" variant="outlined" type="text" name='nationality' className='nat' />
+                <TextField size="small" onChange={setUserGender} InputProps={{ style: { width: '200px' } }} id="outlined-basic" label="Gender" variant="outlined" type="text" name='gender' className='gender' />
+                <TextField size="small" onChange={setUserNat} InputProps={{ style: { width: '200px' } }} id="outlined-basic" label="Nationality" variant="outlined" type="text" name='nationality' className='nat' />
                 <Button onClick={searchByGenderAndNatonality} variant="text">Search</Button>
             </Form>
         </Container>

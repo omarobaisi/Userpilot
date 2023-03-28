@@ -54,6 +54,7 @@ function TableButtom({ getUsers }) {
             Rows per page:  
             <Dropdown>
             <Select
+                size="small"
                 value={usersNum}
                 label="Pages"
                 name="pages" 

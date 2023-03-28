@@ -9,18 +9,24 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 const theme = createTheme({
   palette: {
     background: {
-      primary: '#ffffff',
-      secondary: '#363740',
-      hover: '#9FA2B4',
+      white: '#ffffff',
+      gray: '#363740',
+      lightGray: '#9FA2B4',
+      blue: '#2050AD',
     },
     text: {
       main: '#252733',
       gray: '#A4A6B3',
     },
   },
-  typography: {
-    fontFamily: 'Mulish, sans-serif',
+  size: {
+    small: '18px',
+    meduim: '20px',
+    large: '25px',
   },
+  weight: {
+    bold: 800,
+  }
 });
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

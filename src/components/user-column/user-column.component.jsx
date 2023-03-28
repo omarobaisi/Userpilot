@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from "react-router-dom";
+import { UserContext } from '../../context/user.context';
 
 import { styled } from '@mui/material/styles';
 import TableCell from '@mui/material/TableCell';
@@ -11,15 +12,23 @@ const Name = styled('form')(() => ({
     alignItems: 'center',
 }));
 
-const Bold = styled('form')(() => ({
-    fontWeight: '800',
+const Bold = styled('form')(({ theme }) => ({
+    fontWeight: theme.weight.bold,
 }));
 
 function UserColumn({ user }) {
 
+    const { users } = useContext(UserContext);
+    const { setSelectedUser } = useContext(UserContext);
+    const { setUserPopup } = useContext(UserContext);
+
     const navigate = useNavigate();
 
     const getSelectedUser = () => {
+        const foundUser = users.find(u => u.id === user.id);
+        console.log(foundUser);
+        setSelectedUser(foundUser);
+        setUserPopup(true);
         navigate(`/user/${user.id}`);
     }
 

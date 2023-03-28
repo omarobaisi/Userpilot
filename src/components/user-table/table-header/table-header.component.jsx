@@ -1,6 +1,6 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
-import CurrentUser from '../../img/CurrentUser.png'
+import CurrentUser from '../../../img/CurrentUser.png'
 
 import Grid from '@mui/material/Grid';
 import List from '@mui/material/List';
@@ -9,13 +9,13 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 
-const UsersText = styled('div')(() => ({
+const UsersText = styled('div')(({ theme }) => ({
     margin: '25px 20px',
-    fontSize: '20px',
-    fontWeight: '800',
+    fontSize: theme.weight.meduim,
+    fontWeight: theme.weight.bold,
 }));
 
-function TableTop(props) {
+function TableHeader(props) {
     return (
         <div>
             <Grid container spacing={2}>
@@ -37,4 +37,4 @@ function TableTop(props) {
     );
 }
 
-export default TableTop;
+export default TableHeader;

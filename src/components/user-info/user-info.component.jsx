@@ -19,16 +19,16 @@ const Container = styled('div')(() => ({
     alignItems: 'center'
 }));
 
-const Blue = styled('div')(() => ({
+const Blue = styled('div')(({ theme }) => ({
     position: 'absolute',
     height: '158px',
     width: '100%',
-    background: '#2050AD',
+    background: theme.palette.background.blue,
 }));
 
-const Name = styled('div')(() => ({
-    fontSize: '18px',
-    fontWeight: '800',
+const Name = styled('div')(({ theme }) => ({
+    fontSize: theme.weight.small,
+    fontWeight: theme.weight.bold,
     margin: '15px 0'
 }));
 

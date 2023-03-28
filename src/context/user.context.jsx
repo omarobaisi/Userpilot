@@ -10,12 +10,14 @@ export const UserContext = createContext({
     usersPage: null,
     setSeed: () => null,
     seed: null,
-    setSelectedUser: () => null,
-    selectedUser: null,
     setGender: () => null,
     gender: null,
     setNationality: () => null,
     nationality: null,
+    setSelectedUser: () => null,
+    selectedUser: null,
+    setUserPopup: () => null,
+    UserPopup: null
 });
 
 export const UserProvider = ({ children }) => {
@@ -23,11 +25,12 @@ export const UserProvider = ({ children }) => {
     const [ usersNum, setUsersNum ] = useState(8);
     const [ usersPage, setUsersPage ] = useState(1);
     const [ seed, setSeed ] = useState('');
-    const [ selectedUser, setSelectedUser ] = useState({});
     const [ gender, setGender ] = useState('');
     const [ nationality, setNationality ] = useState('');
+    const [ selectedUser, setSelectedUser ] = useState({});
+    const [ UserPopup, setUserPopup ] = useState(false);
 
-    const value = { users, setUsers, usersNum, setUsersNum, usersPage, setUsersPage, seed, setSeed, selectedUser, setSelectedUser, gender, setGender, nationality, setNationality };
+    const value = { users, setUsers, usersNum, setUsersNum, usersPage, setUsersPage, seed, setSeed, selectedUser, setSelectedUser, gender, setGender, nationality, setNationality, UserPopup, setUserPopup };
 
     return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };

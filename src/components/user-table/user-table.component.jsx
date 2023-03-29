@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useCallback, useContext } from 'react';
 import axios from 'axios';
 import { styled } from '@mui/material/styles';
 import { UserContext } from '../../context/user.context'
@@ -61,10 +61,10 @@ function UserTable() {
   const { usersPage } = useContext(UserContext);
   const { UserPopup } = useContext(UserContext);
 
-  const getUsers = async () => {
+  const getUsers = useCallback(async () => {
     const users = await fetchUsers(usersNum, usersPage);
     setUsers(users)
-  }
+  }, [usersNum, usersPage, setUsers]);
 
   return (
     <>

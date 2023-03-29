@@ -28,7 +28,7 @@ function TableButtom({ getUsers }) {
 
     useEffect(() => {
         getUsers()
-    }, [usersNum, usersPage]);
+    }, [usersNum, usersPage, getUsers]);
 
     const setRowsNumber = (event) => {
         const usersNum = parseInt(event.target.value);
